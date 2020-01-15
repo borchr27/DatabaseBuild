@@ -1,0 +1,27 @@
+CREAT DB TABLE
+Use this to create a new db file or :memory: to just run a clean db out of memory
+    c.execute("""CREATE TABLE employees (
+        first text,
+        last text,
+        pay integer
+        )""")
+
+MANUAL CODE TO MODIFY DB ---
+    c.execute("INSERT INTO employees VALUES (?,?,?)", (emp_1.first, emp_1.last, emp_1.pay))
+    conn.commit()
+
+    c.execute("INSERT INTO employees VALUES (:first, :last, :pay)", {'first': emp_2.first, 'last': emp_2.last, 'pay': emp_2.pay})
+    conn.commit()
+
+    # Insert data statement
+    c.execute("INSERT INTO employees VALUES ('Corey', 'Schafer', 47000)")
+
+    # Looking for employee in database
+    c.execute("SELECT * FROM employees WHERE last=?", ('Schafer',))
+    print(c.fetchall())
+
+    c.execute("SELECT * FROM employees WHERE last=:last", {'last': 'Doe'})
+    print(c.fetchall())
+
+    conn.commit()
+    conn.close()
