@@ -1,27 +1,37 @@
 import pandas as pd
 import sqlite3
 from Ingredient import Ingredient
+from Direction import Direction
 
-conn = sqlite3.connect('ingredients.db')
+conn_i = sqlite3.connect('ingredients.db')
+conn_d = sqlite3.connect('directions.db')
 
-c = conn.cursor()
-
-#df = pd.read_excel ('Ingredients.xlsx')
+c_i = conn_i.cursor()
+c_d = conn_d.cursor()
 
 def insert_ingredient(item):
-    with conn: #closes the connection w the db when finished
-        c.execute("INSERT INTO ingredients VALUES (:recipe, :ingredient, :amt )", {'recipe': item.recipe, 'ingredient': item.ingredient, 'amt': item.amt})
-'''
-# Adds all items from excel file into database (maybe delete items afterwards?)
-for i in range(len(df)):
-    new  = Ingredient(str(df.loc[i][0]), str(df.loc[i][1]), str(df.loc[i][2]))
-    insert_ingredient(new)
-'''
+    with conn_i: #closes the connection w the db when finished
+        c_i.execute("INSERT INTO ingredients VALUES (:recipe, :ingredient, :amt )", {'recipe': item.recipe, 'ingredient': item.ingredient, 'amt': item.amt})
 
-def show_all():
-    with conn:
-        c.execute("SELECT * FROM ingredients")
-    return print(c.fetchall()) 
+def insert_direction(item):
+    with conn_d:
+        c_d.execute("INSERT INTO directions VALUES (:recipe, :source, :direc )", {'recipe': item.recipe, 'source': item.source, 'direc': item.direc})
 
-show_all()
-conn.close()
+def show_ingredients_table():
+    with conn_i:
+        c_i.execute("SELECT * FROM ingredients")
+    return print(c_i.fetchall()) 
+
+def show_directions_table():
+    with conn_d:
+        c_d.execute("SELECT * FROM directions")
+    return print(c_d.fetchall())
+
+x = 'choco'
+c_d.execute("SELECT * FROM directions WHERE recipe LIKE '%{}%' ".format(x))
+print(c_d.fetchall())
+
+#show_directions_table()
+#show_ingredients_table()
+c_i.close()
+c_d.close()

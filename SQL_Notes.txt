@@ -1,3 +1,7 @@
+GOOD SOURCES
+    SQLite Tutorials
+    https://www.sqlitetutorial.net/sqlite-where/
+
 CREAT DB TABLE
 Use this to create a new db file or :memory: to just run a clean db out of memory
 If you mess up the db use this (after you delete the old one) to make a new one
@@ -6,6 +10,12 @@ If you mess up the db use this (after you delete the old one) to make a new one
         last text,
         pay integer
         )""")
+
+PUT ITEMS IN ROW FROM EXCEL INTO DB
+    df = pd.read_excel ('Directions.xlsx')
+    for i in range(len(df)):
+        new  = Direction(str(df.loc[i][0]), str(df.loc[i][1]), str(df.loc[i][2]))
+        insert_direction(new)
 
 MANUAL CODE TO MODIFY DB ---
     c.execute("INSERT INTO employees VALUES (?,?,?)", (emp_1.first, emp_1.last, emp_1.pay))
