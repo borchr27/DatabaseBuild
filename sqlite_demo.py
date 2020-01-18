@@ -3,7 +3,6 @@ import sqlite3
 from employee import Employee
 
 # Import file or in memory (':memory:') database (fresh clean database on every run)
-#conn = sqlite3.connect('employee.db')
 conn = sqlite3.connect('employee.db')
 
 c = conn.cursor()

@@ -1,5 +1,6 @@
 CREAT DB TABLE
 Use this to create a new db file or :memory: to just run a clean db out of memory
+If you mess up the db use this (after you delete the old one) to make a new one
     c.execute("""CREATE TABLE employees (
         first text,
         last text,
