@@ -5,17 +5,17 @@ GOOD SOURCES
 CREAT DB TABLE
 Use this to create a new db file or :memory: to just run a clean db out of memory
 If you mess up the db use this (after you delete the old one) to make a new one
-    c.execute("""CREATE TABLE employees (
-        first text,
-        last text,
-        pay integer
+    c.execute("""CREATE TABLE ingredients (
+        recipe text,
+        ingredient text,
+        amt txt
         )""")
 
 PUT ITEMS IN ROW FROM EXCEL INTO DB
-    df = pd.read_excel ('Directions.xlsx')
+    df = pd.read_excel ('Ingredients.xlsx')
     for i in range(len(df)):
-        new  = Direction(str(df.loc[i][0]), str(df.loc[i][1]), str(df.loc[i][2]))
-        insert_direction(new)
+        new  = Ingredients(str(df.loc[i][0]), str(df.loc[i][1]), str(df.loc[i][2]))
+        insert_ingredient(new)
 
 MANUAL CODE TO MODIFY DB ---
     c.execute("INSERT INTO employees VALUES (?,?,?)", (emp_1.first, emp_1.last, emp_1.pay))
