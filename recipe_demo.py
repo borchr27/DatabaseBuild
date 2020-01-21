@@ -30,12 +30,15 @@ def show_directions_table():
 
 x = input("Search for recipes that have these ingredients: ")
 # High probability search relevance (search: egg, return: egg)
-c_i.execute("SELECT * FROM ingredients WHERE ingredient LIKE '{}' ".format(x))
+spec = c_i.execute("SELECT * FROM ingredients WHERE ingredient LIKE '{}' ".format(x))
 # Low + high probability search relevance (search: egg, return: egg, veggies, eggplant)
-c_i.execute("SELECT * FROM ingredients WHERE ingredient LIKE '%{}%' ".format(x))
+#gen = c_i.execute("SELECT * FROM ingredients WHERE ingredient LIKE '%{}%' ".format(x))
+
+for _ in spec:
+    print(_)
 
 #c_d.execute("SELECT recipe FROM directions WHERE recipe LIKE '%{}%' ".format(x))
-print(c_i.fetchall())
+#print(c_i.fetchall())
 #print(c_d.fetchall())
 
 #show_directions_table()
