@@ -37,6 +37,8 @@ spec = c_i.execute("SELECT * FROM ingredients WHERE ingredient LIKE '{}' ".forma
 for _ in spec:
     print(_)
 
+#Next steps to compare db with other db
+
 #c_d.execute("SELECT recipe FROM directions WHERE recipe LIKE '%{}%' ".format(x))
 #print(c_i.fetchall())
 #print(c_d.fetchall())
